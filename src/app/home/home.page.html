@@ -1,20 +1,36 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+  <ion-title>
+    <div class="login">
+      <img src="../assets/img/Logo.webp" alt="">
+    </div>
+  </ion-title>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Login de acceso</ion-card-subtitle>
+        <ion-card-title>Credenciales</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input label="Usuario" labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Contraseña" type="password" labelPlacement="floating" placeholder="Ingrese su contraseña">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-toggle justify="end">Recuerdame</ion-toggle><br /><br />
+          </ion-item>
+          <ion-button fill="outline">Conectar</ion-button><br>
+          <ion-button fill="outline">Registrar</ion-button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </div>
+
 </ion-content>
