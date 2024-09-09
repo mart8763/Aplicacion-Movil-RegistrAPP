@@ -1,13 +1,12 @@
-<ion-header [translucent]="true">
   <ion-title>
     <div class="login">
       <img src="../assets/img/Logo.webp" alt="">
     </div>
   </ion-title>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="container">
+<ion-content [fullscreen]="true" >
+
+  <div id="container" >
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Login de acceso</ion-card-subtitle>
@@ -17,16 +16,21 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-input label="Usuario" labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
+            <ion-input [(ngModel)]="user.username" label="Usuario" labelPlacement="floating"
+              placeholder="Ingrese su usuario"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Contraseña" type="password" labelPlacement="floating" placeholder="Ingrese su contraseña">
+            <ion-input label="Contraseña" [(ngModel)]="user.password" type="password" labelPlacement="floating"
+              placeholder="Ingrese su contraseña">
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-toggle justify="end">Recuerdame</ion-toggle><br /><br />
+            <ion-label>{{mensaje}}</ion-label>
           </ion-item>
-          <ion-button fill="outline">Conectar</ion-button><br>
+          <ion-item>
+            <p><a [routerLink]="['/resetpass']">Restablecer mi contraseña</a></p>
+          </ion-item>
+          <ion-button fill="outline" (click)="validar()">Conectar</ion-button><br>
           <ion-button fill="outline">Registrar</ion-button>
         </ion-list>
       </ion-card-content>

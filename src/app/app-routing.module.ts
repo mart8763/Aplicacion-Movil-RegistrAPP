@@ -10,7 +10,15 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./access/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'resetpass',
+    loadChildren: () => import('./access/resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+  },
+
 ];
 
 @NgModule({

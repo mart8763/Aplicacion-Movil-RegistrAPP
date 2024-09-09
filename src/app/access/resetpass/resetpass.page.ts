@@ -1,31 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-resetpass',
+  templateUrl: './resetpass.page.html',
+  styleUrls: ['./resetpass.page.scss'],
 })
-export class HomePage {
+export class ResetpassPage implements OnInit {
 
   user = {
-    username: '',
-    password: '',
+    password1: '',
+    password2: '',
   };
   
   mensaje = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+  }
 
   validar() {
-    if (this.user.username.length != 0) {
-      if (this.user.password.length != 0) {
+    if (this.user.password1.length != 0) {
+      if (this.user.password2.length != 0) {
         //Funciona
         this.mensaje = 'Conexion exitosa';
         let navigationExtras: NavigationExtras = {
           state: {
-            username: this.user.username,
-            password: this.user.password,
+            username: this.user.password1,
+            password: this.user.password2,
           },
         };
 
@@ -44,4 +47,3 @@ export class HomePage {
   }
 
 }
-
