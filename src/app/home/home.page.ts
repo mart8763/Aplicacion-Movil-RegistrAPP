@@ -12,10 +12,18 @@ export class HomePage {
     username: '',
     password: '',
   };
+
+  // Variable para controlar la visibilidad de la contraseña
+  mostrarPassword: boolean = false;
   
   mensaje = '';
 
   constructor(private router: Router) {}
+
+  // Funcion para alternar la visibilidad de la contraseña
+  togglePassword1Visibility() {
+    this.mostrarPassword = !this.mostrarPassword;
+  }
 
   validar() {
     if (this.user.username.length != 0) {
