@@ -21,29 +21,34 @@ export class ResetpassPage implements OnInit {
   }
 
   validar() {
+    // Verificamos que la primera contraseña no esté vacía
     if (this.user.password1.length != 0) {
+      // Verificamos que la segunda contraseña no esté vacía
       if (this.user.password2.length != 0) {
-        //Funciona
-        this.mensaje = 'Conexion exitosa';
-        let navigationExtras: NavigationExtras = {
-          state: {
-            username: this.user.password1,
-            password: this.user.password2,
-          },
-        };
+        // Verificamos que las contraseñas coincidan
+        if (this.user.password1 === this.user.password2) {
+          // Si todo está correcto, mostramos el mensaje de éxito
+          this.mensaje = 'Conexión exitosa';
+          let navigationExtras: NavigationExtras = {
+            state: {
+              password: this.user.password1,
+            },
+          };
 
-        this.router.navigate(['/perfil'], navigationExtras);
-        
+          this.router.navigate(['/home'], navigationExtras);
         } else {
-          console.log('Contraseña vacia');
-          this.mensaje = 'Contraseña vacia';
-          //No funciona
+          console.log('Las contraseñas no coinciden');
+          this.mensaje = 'Las contraseñas no coinciden';
         }
       } else {
-        console.log('Usuario vacio');
-        this.mensaje = 'Usuario Vacio';
-        //Tampoco funciona
+        console.log('Confirmación de contraseña vacía');
+        this.mensaje = 'Confirmación de contraseña vacía';
       }
+    } else {
+      console.log('Contraseña vacía');
+      this.mensaje = 'Contraseña vacía';
+    }
   }
-
 }
+
+

@@ -9,16 +9,17 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-input label="Nueva contraseña" type="password" labelPlacement="floating"
+            <ion-input [(ngModel)]="user.password1" label="Nueva contraseña" type="password" labelPlacement="floating"
               placeholder="Ingrese su nueva contraseña">
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Repetir contraseña" type="password" labelPlacement="floating"
+            <ion-input [(ngModel)]="user.password2" label="Confirmar contraseña" type="password" labelPlacement="floating"
               placeholder="Ingrese nuevamente su contraseña">
             </ion-input>
           </ion-item>
-          <ion-button fill="outline" [routerLink]="['/home']">Restablecer mi contraseña</ion-button>
+          <ion-text color="danger" *ngIf="mensaje">{{ mensaje }}</ion-text>
+          <ion-button fill="outline" (click)="validar()">Restablecer mi contraseña</ion-button>
         </ion-list>
       </ion-card-content>
     </ion-card>
