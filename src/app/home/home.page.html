@@ -1,6 +1,6 @@
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
 
-  <div id="container" >
+  <div id="container">
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Login de acceso</ion-card-subtitle>
@@ -10,14 +10,15 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-input [(ngModel)]="user.username" label="Usuario" labelPlacement="floating" 
+            <ion-input [(ngModel)]="user.username" label="Usuario" labelPlacement="floating"
               placeholder="Ingrese su usuario"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Contraseña" [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="user.password" type="password" labelPlacement="floating"
-              placeholder="Ingrese su contraseña">
+            <ion-input label="Contraseña" [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="user.password"
+              type="password" labelPlacement="floating" placeholder="Ingrese su contraseña">
             </ion-input>
-            <ion-icon [name]="mostrarPassword ? 'eye-off' : 'eye'" slot="end" (click)="togglePassword1Visibility()"></ion-icon>
+            <ion-icon [name]="mostrarPassword ? 'eye-off' : 'eye'" slot="end"
+              (click)="togglePassword1Visibility()"></ion-icon>
           </ion-item>
           <ion-item>
             <p><a [routerLink]="['/resetpass']">Restablecer mi contraseña</a></p>
@@ -29,5 +30,4 @@
       </ion-card-content>
     </ion-card>
   </div>
-
 </ion-content>
