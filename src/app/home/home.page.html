@@ -24,8 +24,8 @@
             <p><a [routerLink]="['/resetpass']">Restablecer mi contraseña</a></p>
           </ion-item>
           <ion-text color="danger" *ngIf="mensaje">{{ mensaje }}</ion-text><br>
-          <ion-button fill="outline" (click)="validar()">Conectar</ion-button><br>
-          <ion-button fill="outline">Registrar</ion-button>
+          <ion-button fill="outline" (click)="validar()">Conectar</ion-button>
+          <ion-button fill="outline" [routerLink]="['/register']">Registrar</ion-button>
         </ion-list>
       </ion-card-content>
     </ion-card>

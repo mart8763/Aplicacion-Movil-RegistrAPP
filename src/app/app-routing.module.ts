@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'resetpass',
     loadChildren: () => import('./access/resetpass/resetpass.module').then( m => m.ResetpassPageModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./access/register/register.module').then( m => m.RegisterPageModule)
+  },
 
 ];
 
