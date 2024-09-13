@@ -23,7 +23,17 @@ export class ResetpassPage implements OnInit {
   constructor(
     private router: Router,
     private animationCtrl: AnimationController
-  ) { }
+  ) { 
+
+    const navegacion = this.router.getCurrentNavigation();
+    const state = navegacion?.extras.state as {
+      username: '';
+      password1: '';
+      password2: '';
+    };
+    
+
+  }
 
   ngOnInit() {
   }
