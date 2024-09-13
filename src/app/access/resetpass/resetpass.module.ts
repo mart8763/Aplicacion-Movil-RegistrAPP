@@ -8,12 +8,16 @@ import { ResetpassPageRoutingModule } from './resetpass-routing.module';
 
 import { ResetpassPage } from './resetpass.page';
 
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ResetpassPageRoutingModule
+    ResetpassPageRoutingModule,
+    MatProgressSpinner,
   ],
   declarations: [ResetpassPage]
 })

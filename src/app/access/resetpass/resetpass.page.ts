@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-resetpass',
@@ -15,18 +15,19 @@ export class ResetpassPage implements OnInit {
     password2: '',
   };
 
-  // Variables para controlar la visibilidad de las contraseñas
   mostrarPassword1: boolean = false;
   mostrarPassword2: boolean = false;
-  
-  mensaje = '';
 
-  constructor(private router: Router, private alertController: AlertController) { }
+  mensaje: string = '';
+
+  constructor(
+    private router: Router,
+    private animationCtrl: AnimationController
+  ) { }
 
   ngOnInit() {
   }
 
-  // Funciones para alternar la visibilidad de las contraseñas
   togglePassword1Visibility() {
     this.mostrarPassword1 = !this.mostrarPassword1;
   }
@@ -36,46 +37,47 @@ export class ResetpassPage implements OnInit {
   }
 
   async mostrarAlerta() {
-    const alert = await this.alertController.create({
-      header: 'Éxito',
-      message: 'La contraseña ha sido cambiada exitosamente.',
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {
-            // Aquí se realiza la redirección después de cerrar el mensaje
-            let navigationExtras: NavigationExtras = {
-              state: {
-                password: this.user.password1,
-              },
-            };
-            this.router.navigate(['/home'], navigationExtras);
-          }
-        }
-      ]
-    });
-  
-    await alert.present();
+    // Mostrar el contenedor de alerta personalizado
+    const alertElement = document.getElementById('custom-alert');
+    if (alertElement) {
+      alertElement.classList.remove('hidden');
+      alertElement.style.display = 'block'; // Asegúrate de que el contenedor se muestre
+
+      // Aplicar animación al contenedor
+      const animation = this.animationCtrl.create()
+        .addElement(alertElement)
+        .duration(500)
+        .fromTo('transform', 'translateY(-100%)', 'translateY(0)')
+        .fromTo('opacity', '0', '1');
+
+      await animation.play();
+    }
   }
-  
+
+  async closeCustomAlert() {
+    const alertElement = document.getElementById('custom-alert');
+    if (alertElement) {
+      const animation = this.animationCtrl.create()
+        .addElement(alertElement)
+        .duration(300)
+        .fromTo('transform', 'translateY(0)', 'translateY(-100%)')
+        .fromTo('opacity', '1', '0');
+
+      await animation.play();
+      alertElement.style.display = 'none'; // Ocultar el contenedor después de la animación
+    }
+  }
 
   validar() {
-    // Verificar que el nombre de usuario no esté vacío
-    if (this.user.username.length != 0) {
-      // Verificamos que la primera contraseña no esté vacía
-      if (this.user.password1.length != 0) {
-        // Verificamos que la segunda contraseña no esté vacía
-        if (this.user.password2.length != 0) {
-          // Verificamos que las contraseñas coincidan
+    if (this.user.username.length !== 0) {
+      if (this.user.password1.length !== 0) {
+        if (this.user.password2.length !== 0) {
           if (this.user.password1 === this.user.password2) {
-            // Si todo está correcto, mostramos el mensaje de éxito
-            //this.mensaje = 'Conexión exitosa';
             let navigationExtras: NavigationExtras = {
               state: {
                 password: this.user.password1,
               },
             };
-
             this.mostrarAlerta();
           } else {
             console.log('Las contraseñas no coinciden');

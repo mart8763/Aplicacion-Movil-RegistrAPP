@@ -35,7 +35,7 @@ export class HomePage {
   validar() {
     if (this.user.username.length != 0) {
       if (this.user.password.length != 0) {
-        this.mensaje = 'Conexion exitosa';
+        //this.mensaje = 'Conexion exitosa';
         let navigationExtras: NavigationExtras = {
           state: {
             username: this.user.username,

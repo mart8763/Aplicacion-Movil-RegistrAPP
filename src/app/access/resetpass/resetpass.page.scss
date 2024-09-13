@@ -1,0 +1,25 @@
+#custom-alert {
+    position: fixed;
+    top: 38%; /* Centrar verticalmente */
+    left: 5%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustar para centrado perfecto */
+    height: 28%; /* Ajustar la altura como un porcentaje del alto de la pantalla */
+    width: 90%; /* Ajustar el ancho como un porcentaje del ancho de la pantalla */
+    max-width: 400px; /* Ajustar el ancho máximo como desees */
+    background: #1e1e1e;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Ocultar por defecto */
+    text-align: center; /* Centrar texto y contenido */
+    padding: 20px; /* Añadir padding para espacio interno */
+}
+
+#custom-alert.hidden {
+    display: none; /* Asegúrate de que el contenedor esté oculto cuando se le agregue la clase 'hidden' */
+}
+
+#custom-alert ion-button {
+    display: inline-block; /* Asegúrate de que el botón esté en línea para centrarlo */
+    margin-top: 20px; /* Añadir margen superior para separar del contenido superior */
+    margin-bottom: 20px; /* Añadir margen inferior para separar del borde inferior */
+}
