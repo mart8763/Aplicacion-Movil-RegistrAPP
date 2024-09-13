@@ -14,17 +14,15 @@ export class HomePage {
     password: '',
   };
 
-  // Variable para controlar la visibilidad de la contraseña
   mostrarPassword: boolean = false;
 
   mensaje = '';
+  mensajeTipo = ''; // Variable para el tipo de mensaje
 
-  // Para la animacion de carga
   spinner = false;
 
   constructor(private router: Router, private animationController: AnimationController) { }
 
-  // Funcion para alternar la visibilidad de la contraseña
   togglePassword1Visibility() {
     this.mostrarPassword = !this.mostrarPassword;
   }
@@ -32,10 +30,12 @@ export class HomePage {
   cambiarSpinner() {
     this.spinner = !this.spinner;
   }
+
   validar() {
     if (this.user.username.length != 0) {
       if (this.user.password.length != 0) {
-        //this.mensaje = 'Conexion exitosa';
+        this.mensaje = 'Conexión exitosa';
+        this.mensajeTipo = 'success'; // Mensaje de éxito
         let navigationExtras: NavigationExtras = {
           state: {
             username: this.user.username,
@@ -43,22 +43,20 @@ export class HomePage {
           },
         };
         this.cambiarSpinner();
-        /* setTimeout = permite generar un pequeño delay para realizar la accion */
         setTimeout(() => {
-
           this.router.navigate(['/perfil'], navigationExtras);
           this.cambiarSpinner();
           this.mensaje = "";
+          this.mensajeTipo = '';
         }, 3000);
       } else {
-        console.log('Contraseña vacia');
-        this.mensaje = 'Contraseña vacia';
+        this.mensaje = 'Contraseña vacía';
+        this.mensajeTipo = 'error'; // Mensaje de error
       }
     } else {
-      console.log('Usuario vacio');
-      this.mensaje = 'Usuario Vacio';
+      this.mensaje = 'Usuario vacío';
+      this.mensajeTipo = 'error'; // Mensaje de error
     }
   }
 
 }
-
