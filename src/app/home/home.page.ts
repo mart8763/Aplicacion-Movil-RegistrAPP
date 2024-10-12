@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
+import { AuthenticatorService } from '../servicios/authenticator.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,10 @@ export class HomePage {
 
   spinner = false;
 
-  constructor(private router: Router, private animationController: AnimationController) { }
+  constructor(
+    private router: Router, 
+    private animationController: AnimationController,
+    private auth: AuthenticatorService) { }
 
   togglePassword1Visibility() {
     this.mostrarPassword = !this.mostrarPassword;
@@ -32,10 +36,9 @@ export class HomePage {
   }
 
   validar() {
-    if (this.user.username.length != 0) {
-      if (this.user.password.length != 0) {
+    
+      if (this.auth.login(this.user.username, this.user.password)) {
         this.mensaje = 'Conexión exitosa';
-        this.mensajeTipo = 'success'; // Mensaje de éxito
         let navigationExtras: NavigationExtras = {
           state: {
             username: this.user.username,
@@ -50,13 +53,8 @@ export class HomePage {
           this.mensajeTipo = '';
         }, 3000);
       } else {
-        this.mensaje = 'Contraseña vacía';
-        this.mensajeTipo = 'error'; // Mensaje de error
+        this.mensaje = 'Error en las credenciales';
       }
-    } else {
-      this.mensaje = 'Usuario vacío';
-      this.mensajeTipo = 'error'; // Mensaje de error
-    }
   }
 
 }

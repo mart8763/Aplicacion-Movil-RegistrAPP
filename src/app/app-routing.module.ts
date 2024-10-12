@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { authGuard } from './servicios/auth.guard';
 
 const routes: Routes = [
   {
@@ -10,9 +11,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'perfil',
-    loadChildren: () => import('./access/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./access/perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'resetpass',
@@ -21,6 +24,11 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./access/register/register.module').then( m => m.RegisterPageModule)
+  },
+  //Pagina configurada con ** queda indicada como pagina de redireccionamiento en casos de error 
+  {
+    path: '**',
+    loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
   },
 
 ];
