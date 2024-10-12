@@ -8,20 +8,10 @@
     margin: 20px 0; /* Ajusta el margen para separar del contenido superior e inferior */
   }
   
-  /* Opcional: Ajustar el tamaño del spinner si es necesario */
+  /*Ajustar el tamaño del spinner si es necesario */
   .spinner-container ion-spinner {
     --spinner-size: 50px; /* Ajusta el tamaño según sea necesario */
   }
-  
- /* Mensaje de éxito */
-.success-message {
-  color: rgb(14, 207, 14);
-}
-
-/* Mensaje de error */
-.error-message {
-  color: rgb(255, 41, 41);
-}
 
 /* Añade un margen inferior a los mensajes de error para separarlos de los botones */
 .mensaje-container {
