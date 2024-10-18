@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,11 +7,30 @@ import { Injectable } from '@angular/core';
 export class AuthenticatorService {
   //Generamos una variable boolean para rectificar el actual estado de conexion con el autentificador
   connnectionStatus: boolean = false;
+  constructor(private storage: StorageService) { }
 
-  constructor() { }
+  loginBDD(user: string, pass: String): Promise<boolean> {
+    //OBtengo un promise
+    //Promise tiene 2 valores || resuelto y no resuelto
+    return this.storage
+      .get(user)
+      .then((res) => {
+        //Si funciona me devuelve el user completo
+        if (res.pass == pass) {
+          this.connnectionStatus = true;
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.log('Error en el sistema: ' + error);
+        return false;
+      });
+  }
 
   login(user: String, pass: String): boolean {
-    if (user == 'aa' && pass == 'aa') {
+    if (user == 'j.c' && pass == 'a123') {
       this.connnectionStatus = true;
       return true;
     }
@@ -25,5 +45,19 @@ export class AuthenticatorService {
   //Funcion para consultar el estado de conexion
   isConected() {
     return this.connnectionStatus;
+  }
+
+  async registrar(user: any):Promise<boolean> {
+    //set(llave,valor)
+    return this.storage.set(user.username, user).then((res) => {
+        if (res != null) {
+          return true;
+        }else{
+          return false;
+        }
+      })
+      .catch((error) => {
+        return false;
+      });
   }
 }

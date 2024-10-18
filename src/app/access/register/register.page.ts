@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { AuthenticatorService } from 'src/app/servicios/authenticator.service';
+
 
 @Component({
   selector: 'app-register',
@@ -10,48 +12,45 @@ import { AlertController } from '@ionic/angular';
 export class RegisterPage implements OnInit {
 
   user = {
-    nombre: '',
-    apellidos: '',
-    edad: '',
-    educacion: '',
-    fechaNacimiento: '' // Aquí se almacenará la fecha seleccionada
+    username: '',
+    email: '',
+    password: '',
   };
 
-  constructor(private router: Router, private alertController: AlertController) {}
-
-  async mostrarAlerta(mensaje: string) {
-    const alert = await this.alertController.create({
-      header: 'Atención',
-      message: mensaje,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
-  registrar() {
-    if (!this.user.nombre || !this.user.apellidos || !this.user.edad || !this.user.educacion || !this.user.fechaNacimiento) {
-      this.mostrarAlerta('Por favor, complete todos los campos.');
-    } else {
-      // Guardar los datos del usuario en localStorage
-      localStorage.setItem('user', JSON.stringify(this.user));
-
-      // Navegar a la página de perfil con los datos
-      const navigationExtras: NavigationExtras = {
-        state: {
-          username: this.user.nombre + ' ' + this.user.apellidos,
-          edad: this.user.edad,
-          educacion: this.user.educacion,
-          fechaNacimiento: this.user.fechaNacimiento
-        }
-      };
-      this.router.navigate(['/perfil'], navigationExtras);
-    }
-  }
-
+  
+  constructor(
+    private auth: AuthenticatorService,
+    private router: Router, 
+    private toastController: ToastController
+  ) {}
+  
 
   ngOnInit() {
   }
+
+  async registrar() {
+    this.auth
+      .registrar(this.user)
+      .then((res) => {
+        this.router.navigate(['/home']);
+        return this.toastController.create({
+          message: 'Registrado con exito',
+          duration: 5000,
+          position: 'bottom',
+        });
+      })
+      .then((toast) => toast.present())
+      .catch((error) => {
+        return this.toastController
+          .create({
+            message: 'Error al registrar',
+            duration: 5000,
+            position: 'bottom',
+          })
+          .then((toast) => toast.present());
+      });
+  }
+
 
 }
 

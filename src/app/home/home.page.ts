@@ -3,13 +3,14 @@ import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 import { AuthenticatorService } from '../servicios/authenticator.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  /* Objeto JSON para usuario */
   user = {
     username: '',
     password: '',
@@ -17,28 +18,31 @@ export class HomePage {
 
   mostrarPassword: boolean = false;
 
+  /* mensaje de respuesta */
   mensaje = '';
-  mensajeTipo = ''; // Variable para el tipo de mensaje
 
   spinner = false;
 
   constructor(
     private router: Router, 
     private animationController: AnimationController,
-    private auth: AuthenticatorService) { }
+    private auth: AuthenticatorService
+  ) { }
 
   togglePassword1Visibility() {
     this.mostrarPassword = !this.mostrarPassword;
   }
+
 
   cambiarSpinner() {
     this.spinner = !this.spinner;
   }
 
   validar() {
-    
-      if (this.auth.login(this.user.username, this.user.password)) {
-        this.mensaje = 'Conexión exitosa';
+    this.auth
+      .loginBDD(this.user.username, this.user.password)
+      .then((res) => {
+        this.mensaje = 'Conexion exitosa';
         let navigationExtras: NavigationExtras = {
           state: {
             username: this.user.username,
@@ -46,15 +50,16 @@ export class HomePage {
           },
         };
         this.cambiarSpinner();
+        /* setTimeout = permite generar un pequeño delay para realizar la accion */
         setTimeout(() => {
           this.router.navigate(['/perfil'], navigationExtras);
           this.cambiarSpinner();
-          this.mensaje = "";
-          this.mensajeTipo = '';
+          this.mensaje = '';
         }, 3000);
-      } else {
+      })
+      .catch((error) => {
         this.mensaje = 'Error en las credenciales';
-      }
+      });
   }
 
 }
