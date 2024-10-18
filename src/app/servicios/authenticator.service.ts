@@ -16,7 +16,7 @@ export class AuthenticatorService {
       .get(user)
       .then((res) => {
         //Si funciona me devuelve el user completo
-        if (res.pass == pass) {
+        if (res.password == pass) {
           this.connnectionStatus = true;
           return true;
         } else {
