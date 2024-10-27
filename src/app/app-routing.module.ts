@@ -5,7 +5,7 @@ import { authGuard } from './servicios/auth.guard';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -14,22 +14,28 @@ const routes: Routes = [
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./access/perfil/perfil.module').then( m => m.PerfilPageModule),
+    loadChildren: () => import('./access/perfil/perfil.module').then(m => m.PerfilPageModule),
     canActivate: [authGuard]
   },
   {
     path: 'resetpass',
-    loadChildren: () => import('./access/resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+    loadChildren: () => import('./access/resetpass/resetpass.module').then(m => m.ResetpassPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./access/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./access/register/register.module').then(m => m.RegisterPageModule)
+  },
+  {
+    path: 'controller',
+    loadChildren: () => import('./admin/controller/controller.module').then(m => m.ControllerPageModule)
   },
   //Pagina configurada con ** queda indicada como pagina de redireccionamiento en casos de error 
   {
     path: '**',
-    loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
+    loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
   },
+
+
 
 ];
 
