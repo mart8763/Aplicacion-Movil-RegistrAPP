@@ -1,36 +1,37 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticatorService {
-  //Generamos una variable boolean para rectificar el actual estado de conexion con el autentificador
   connnectionStatus: boolean = false;
-  constructor(private storage: StorageService) { }
+  apiURL = "http://localhost:3000";
 
-  loginBDD(user: string, pass: String): Promise<boolean> {
-    //OBtengo un promise
-    //Promise tiene 2 valores || resuelto y no resuelto
-    return this.storage
-      .get(user)
-      .then((res) => {
-        //Si funciona me devuelve el user completo
-        if (res.password == pass) {
-          this.connnectionStatus = true;
-          return true;
-        } else {
-          return false;
-        }
-      })
-      .catch((error) => {
-        console.log('Error en el sistema: ' + error);
-        return false;
-      });
+  constructor(private http: HttpClient) { }
+
+  // Registrar usuario en la API
+  registrar(user: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/users`, user);
   }
 
-  login(user: String, pass: String): boolean {
-    if (user == 'j.c' && pass == 'a123') {
+  // Obtener todos los usuarios y filtrar manualmente en el frontend
+  loginBDD(user: string, pass: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiURL}/users`).pipe(
+      map(users => {
+        const foundUser = users.find(u => u.username === user && u.password === pass);
+        console.log("Usuarios recuperados:", users); // Log para ver todos los usuarios
+        console.log("Usuario encontrado:", foundUser); // Log para ver si se encuentra el usuario
+        return foundUser;
+      })
+    );
+  }
+
+  // Método de autenticación de prueba
+  login(user: string, pass: string): boolean {
+    if (user === 'j.c' && pass === 'a123') {
       this.connnectionStatus = true;
       return true;
     }
@@ -38,26 +39,13 @@ export class AuthenticatorService {
     return false;
   }
 
-  //Logout para desconectar del sistema
+  // Logout para desconectar del sistema
   logout() {
     this.connnectionStatus = false;
   }
-  //Funcion para consultar el estado de conexion
+
+  // Función para consultar el estado de conexión
   isConected() {
     return this.connnectionStatus;
-  }
-
-  async registrar(user: any):Promise<boolean> {
-    //set(llave,valor)
-    return this.storage.set(user.username, user).then((res) => {
-        if (res != null) {
-          return true;
-        }else{
-          return false;
-        }
-      })
-      .catch((error) => {
-        return false;
-      });
   }
 }

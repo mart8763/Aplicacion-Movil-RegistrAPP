@@ -19,7 +19,7 @@
         <ion-list>
           <ion-item>
             <ion-button fill="outline" slot="end" expand="block"
-              (click)="isEditing ? modificarUsuario(userForm.id) : addUser()">
+              (click)="isEditing ? modificarUsuario() : addUser()">
               {{ isEditing ? 'Actualizar Usuario' : 'Agregar Usuario' }}
             </ion-button>
           </ion-item>
@@ -55,7 +55,7 @@
               <ion-col>{{user.username}}</ion-col>
               <ion-col>{{user.email}}</ion-col>
               <ion-col>{{user.password}}</ion-col>
-              <ion-col (click)="modificarUsuario(user.id)">
+              <ion-col (click)="editUser(user)">
                 <ion-button fill="outline" size="small">
                   Modificar
                 </ion-button>

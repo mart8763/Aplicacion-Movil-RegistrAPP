@@ -4,7 +4,6 @@ import { AnimationController } from '@ionic/angular';
 import { AuthenticatorService } from '../servicios/authenticator.service';
 import { StorageService } from '../servicios/storage.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -38,8 +37,8 @@ export class HomePage {
   async ngOnInit() {
     const test = this.storage.get('ejemplo.eje');
     test.then((val) => {
-      console.log(val)
-    },)
+      console.log(val);
+    });
   }
 
   cambiarSpinner() {
@@ -47,24 +46,35 @@ export class HomePage {
   }
 
   validar() {
-    this.auth.loginBDD(this.user.username, this.user.password).then((res) => {
-      this.mensaje = 'Conexión exitosa';
-      let navigationExtras: NavigationExtras = {
-        state: {
-          username: this.user.username,
-          password: this.user.password,
-        },
-      };
-      this.cambiarSpinner();
-      setTimeout(() => {
-        this.router.navigate(['/perfil'], navigationExtras);
-        this.cambiarSpinner();
-        this.mensaje = "";
-      }, 3000);
-    })
-      .catch((error) => {
+    this.auth.loginBDD(this.user.username, this.user.password).subscribe(
+      (res) => {
+        console.log("Respuesta de loginBDD:", res);
+        if (res) {
+          this.mensaje = 'Conexión exitosa';
+          
+          // Establecer connnectionStatus en true al autenticarse
+          this.auth.connnectionStatus = true;
+  
+          let navigationExtras: NavigationExtras = {
+            state: {
+              username: this.user.username,
+              password: this.user.password,
+            },
+          };
+          
+          console.log("Redirigiendo a perfil...");
+          this.router.navigate(['/perfil'], navigationExtras);
+        } else {
+          this.mensaje = 'Error en las credenciales';
+          console.log("Usuario no encontrado o credenciales incorrectas.");
+        }
+      },
+      (error) => {
         this.mensaje = 'Error en las credenciales';
-      });
+        console.error('Error al iniciar sesión:', error);
+      }
+    );
   }
-
+  
+  
 }

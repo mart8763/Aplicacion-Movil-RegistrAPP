@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthenticatorService } from 'src/app/servicios/authenticator.service';
 
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -17,41 +16,36 @@ export class RegisterPage implements OnInit {
     password: '',
   };
 
-  
   constructor(
     private auth: AuthenticatorService,
     private router: Router, 
     private toastController: ToastController
   ) {}
-  
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async registrar() {
-    this.auth
-      .registrar(this.user)
-      .then((res) => {
+    this.auth.registrar(this.user).subscribe(
+      async (res) => {
+        // Navegar a la página de inicio si el registro fue exitoso
         this.router.navigate(['/home']);
-        return this.toastController.create({
-          message: 'Registrado con exito',
-          duration: 5000,
+        const toast = await this.toastController.create({
+          message: 'Registrado con éxito',
+          duration: 3000,
           position: 'bottom',
         });
-      })
-      .then((toast) => toast.present())
-      .catch((error) => {
-        return this.toastController
-          .create({
-            message: 'Error al registrar',
-            duration: 5000,
-            position: 'bottom',
-          })
-          .then((toast) => toast.present());
-      });
+        toast.present();
+      },
+      async (error) => {
+        // Mostrar mensaje de error si el registro falló
+        const toast = await this.toastController.create({
+          message: 'Error al registrar el usuario',
+          duration: 3000,
+          position: 'bottom',
+        });
+        toast.present();
+        console.error("Error en el proceso de registro:", error);
+      }
+    );
   }
-
-
 }
-
-

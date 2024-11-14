@@ -51,24 +51,34 @@ export class ControllerPage implements OnInit {
 
   // Preparar los datos para editar un usuario
   editUser(user: any) {
-    this.userForm = { ...user };  // Copiar los datos del usuario seleccionado al formulario
+    this.userForm = { ...user };  // Copiar los datos del usuario al formulario, incluyendo el ID
     this.isEditing = true;
-  }
+  }  
 
-  modificarUsuario(id: any) {
-    if (!this.userForm.name || !this.userForm.email) {
+  // Método para buscar y modificar el usuario usando username y password
+  modificarUsuario() {
+    if (!this.userForm.username || !this.userForm.email) {
       alert("Por favor completa todos los campos.");
       return;
     }
-    this.api.updateUser(this.userForm.id, this.userForm).subscribe(() => {
-      console.log('Usuario actualizado con éxito');
-      this.userForm = {};   // Limpiar el formulario
-      this.isEditing = false;
-      this.cargarUsuarios();     // Recargar la lista de usuarios
-    }, (error) => {
-      console.error('Error al actualizar el usuario:', error);
-    });
+  
+    if (this.userForm.id) {  // Usamos el ID ya almacenado en el formulario
+      console.log('ID del usuario:', this.userForm.id);
+      console.log('Datos para actualizar:', this.userForm);
+  
+      this.api.updateUser(this.userForm.id, this.userForm).subscribe(() => {
+        console.log('Usuario actualizado con éxito');
+        this.userForm = {};
+        this.isEditing = false;
+        this.cargarUsuarios();
+      }, (error) => {
+        console.error('Error al actualizar el usuario:', error);
+      });
+    } else {
+      alert("No se encontró el ID del usuario para modificar.");
+    }
   }
+  
 
   cancelEdit() {
     this.userForm = {};
