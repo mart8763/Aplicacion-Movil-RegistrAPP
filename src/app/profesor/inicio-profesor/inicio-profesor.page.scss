@@ -1,0 +1,36 @@
+/* Para centrar el contenido del spinner */
+.spinner-container {
+    text-align: center;
+    margin-bottom: 10px;
+    /* Ajusta según sea necesario */
+}
+
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    /* Ajusta la altura según sea necesario */
+    margin: 20px 0;
+    /* Ajusta el margen para separar del contenido superior e inferior */
+}
+
+/*Ajustar el tamaño del spinner si es necesario */
+.spinner-container ion-spinner {
+    --spinner-size: 50px;
+    /* Ajusta el tamaño según sea necesario */
+}
+
+.login {
+    //display: flex;
+    //align-items: center;
+    width: 380px;
+    height: auto;
+    margin: 30px 0;
+    //justify-content: center; /* Centra la imagen horizontalmente */
+    //align-items: center;     /* Centra la imagen verticalmente */
+    left: 70%;
+    transform: translate(5%, 8%);
+    /* Ajusta el contenedor para que esté perfectamente centrado */
+}

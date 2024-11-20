@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'inicio',
     pathMatch: 'full'
   },
   {
@@ -29,11 +29,23 @@ const routes: Routes = [
     path: 'controller',
     loadChildren: () => import('./admin/controller/controller.module').then(m => m.ControllerPageModule)
   },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./access/inicio/inicio.module').then(m => m.InicioPageModule)
+  },
+  {
+    path: 'inicio-profesor',
+    loadChildren: () => import('./profesor/inicio-profesor/inicio-profesor.module').then(m => m.InicioProfesorPageModule)
+  },
   //Pagina configurada con ** queda indicada como pagina de redireccionamiento en casos de error 
   {
     path: '**',
     loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
   },
+
+
+
+
 
 
 

@@ -1,0 +1,42 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Cambia de "center" a "flex-start" */
+    height: 100vh;
+    gap: 20px;
+    /* Espacio entre los botones */
+    margin-top: 25vh;
+    /* Agrega margen superior para subir los botones */
+}
+
+.custom-button {
+    width: 300px;
+    /* Ancho específico del botón */
+    height: 90px;
+    /* Alto específico del botón */
+    --background: #f7b31c;
+    /* Color de fondo del botón */
+    --color: black;
+    /* Color del texto */
+    font-size: 18px;
+    /* Tamaño de la fuente */
+    border-radius: 8px;
+    /* Esquinas redondeadas (opcional) */
+}
+
+.login {
+    //display: flex;
+    //align-items: center;
+    width: 380px;
+    height: auto;
+    margin: 30px 0;
+    //justify-content: center; /* Centra la imagen horizontalmente */
+    //align-items: center;     /* Centra la imagen verticalmente */
+    left: 70%;
+    transform: translate(5%, 8%);
+    /* Ajusta el contenedor para que esté perfectamente centrado */
+
+
+}
