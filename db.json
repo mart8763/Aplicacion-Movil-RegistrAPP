@@ -36,5 +36,13 @@
       "email": "pe",
       "password": "amarugei"
     }
+  ],
+  "profesor": [
+    {
+      "id": "200",
+      "username": "pedro",
+      "email": "dhfg",
+      "password": "pass1234"
+    }
   ]
 }
