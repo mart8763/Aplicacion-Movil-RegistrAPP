@@ -18,8 +18,7 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-button fill="outline" slot="end" expand="block"
-              (click)="isEditing ? modificarUsuario() : addUser()">
+            <ion-button fill="outline" slot="end" expand="block" (click)="isEditing ? modificarUsuario() : addUser()">
               {{ isEditing ? 'Actualizar Usuario' : 'Agregar Usuario' }}
             </ion-button>
           </ion-item>
@@ -74,7 +73,7 @@
   </div>
 
   <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px;">
-    <ion-fab-button [routerLink]="['/home']">
+    <ion-fab-button [routerLink]="['/inicio-profesor']">
       <ion-icon name="chevron-back"></ion-icon>
     </ion-fab-button>
   </ion-fab>

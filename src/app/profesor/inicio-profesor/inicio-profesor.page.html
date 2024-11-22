@@ -13,18 +13,19 @@
   <div id="container">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>Login de acceso profesor</ion-card-subtitle>
+        <ion-card-subtitle>Login de acceso Profesor</ion-card-subtitle>
         <ion-card-title>Credenciales</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-input label="Usuario" labelPlacement="floating" placeholder="Ingrese su usuario"></ion-input>
+            <ion-input [(ngModel)]="profesor.username" label="Usuario" labelPlacement="floating"
+              placeholder="Ingrese su usuario"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input label="Contraseña" labelPlacement="floating" placeholder="Ingrese su contraseña"
-              type="password"></ion-input>
+            <ion-input label="Contraseña" [type]="mostrarPassword ? 'text' : 'password'" [(ngModel)]="profesor.password"
+              labelPlacement="floating" placeholder="Ingrese su contraseña"></ion-input>
             <ion-icon [name]="mostrarPassword ? 'eye-off' : 'eye'" slot="end"
               (click)="togglePassword1Visibility()"></ion-icon>
           </ion-item>
@@ -35,13 +36,16 @@
             </ion-label>
           </ion-item>
           <!-- Mensaje -->
-
+          <div class="mensaje-container">
+            <ion-text class="mensaje-error">
+              {{ mensaje }}
+            </ion-text>
+          </div>
           <div *ngIf="spinner" class="spinner-container">
             <ion-spinner></ion-spinner>
             <p>Cargando...</p>
           </div>
-          <ion-button fill="outline">Conectar</ion-button>
-          <ion-button fill="outline">Registrar</ion-button>
+          <ion-button fill="outline" (click)="validar()">Conectar</ion-button>
         </ion-list>
       </ion-card-content>
     </ion-card>

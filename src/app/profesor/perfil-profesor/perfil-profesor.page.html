@@ -17,9 +17,9 @@
     <ion-card>
       <ion-card-header>
         <ion-card-title>
-          <h1>Bienvenido/a {{username}}</h1>
+          <h1>Bienvenido/a Profesor {{username}}</h1>
         </ion-card-title>
-        <ion-card-subtitle>Perfil Usuario</ion-card-subtitle>
+        <ion-card-subtitle>Perfil Profesor</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <ion-list>
@@ -32,32 +32,13 @@
           <ion-item>
             <ion-input label="Edad" type="number" placeholder="Ingrese edad"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label style="text-align: start;">Nivel Educacional</ion-label>
-            <ion-select justify="space-between" value="optEduc" interface="action-sheet" placeholder="Seleccione nivel">
-              <ion-select-option value="Ninguno">Ninguno</ion-select-option>
-              <ion-select-option value="Tecnico">Tecnico</ion-select-option>
-              <ion-select-option value="Universitario">Universitario</ion-select-option>
-              <ion-select-option value="Magister">Magister</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label style="text-align: start;">Fecha Nacimiento</ion-label>
-            <ion-datetime-button datetime="datetime"></ion-datetime-button>
-
-            <ion-modal [keepContentsMounted]="true">
-              <ng-template>
-                <ion-datetime id="datetime" presentation="date"></ion-datetime>
-              </ng-template>
-            </ion-modal>
-          </ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
   </div>
 
   <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px; ;">
-    <ion-fab-button [routerLink]="['/home']">
+    <ion-fab-button [routerLink]="['/inicio-profesor']">
       <ion-icon name="chevron-back"></ion-icon>
     </ion-fab-button>
   </ion-fab>

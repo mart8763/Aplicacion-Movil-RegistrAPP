@@ -37,11 +37,17 @@ const routes: Routes = [
     path: 'inicio-profesor',
     loadChildren: () => import('./profesor/inicio-profesor/inicio-profesor.module').then(m => m.InicioProfesorPageModule)
   },
+  {
+    path: 'perfil-profesor',
+    loadChildren: () => import('./profesor/perfil-profesor/perfil-profesor.module').then(m => m.PerfilProfesorPageModule)
+  },
   //Pagina configurada con ** queda indicada como pagina de redireccionamiento en casos de error 
   {
     path: '**',
     loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
   },
+
+
 
 
 
