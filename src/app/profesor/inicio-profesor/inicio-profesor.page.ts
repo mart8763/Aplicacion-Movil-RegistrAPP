@@ -48,9 +48,9 @@ export class InicioProfesorPage {
   }
 
   validar() {
-    this.auth.loginBDD(this.profesor.username, this.profesor.password).subscribe(
+    this.auth.loginProfesor(this.profesor.username, this.profesor.password).subscribe(
       (res) => {
-        console.log("Respuesta de loginBDD:", res);
+        console.log("Respuesta de loginProfesor:", res);
         if (res) {
           this.mensaje = 'Conexión exitosa';
 

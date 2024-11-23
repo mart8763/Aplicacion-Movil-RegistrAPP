@@ -49,6 +49,12 @@
       "username": "pedro",
       "email": "dhfg",
       "password": "pass1234"
+    },
+    {
+      "id": "201",
+      "username": "juan",
+      "email": "dhfg",
+      "password": "pass123"
     }
   ]
 }

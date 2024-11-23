@@ -29,6 +29,17 @@ export class AuthenticatorService {
     );
   }
 
+  loginProfesor(user: string, pass: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiURL}/profesor`).pipe(
+      map(profesor => {
+        const foundUser = profesor.find(u => u.username === user && u.password === pass);
+        console.log("Usuarios recuperados:", profesor); // Log para ver todos los usuarios
+        console.log("Usuario encontrado:", foundUser); // Log para ver si se encuentra el usuario
+        return foundUser;
+      })
+    );
+  }
+
   // Método de autenticación de prueba
   login(user: string, pass: string): boolean {
     if (user === 'j.c' && pass === 'a123') {
