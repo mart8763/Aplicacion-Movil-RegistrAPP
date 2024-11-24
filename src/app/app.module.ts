@@ -10,6 +10,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { provideHttpClient } from '@angular/common/http';
 
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrGeneraPage } from './qrcode/qr-genera/qr-genera.page';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +20,7 @@ import { provideHttpClient } from '@angular/common/http';
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
+    QRCodeModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -25,4 +29,4 @@ import { provideHttpClient } from '@angular/common/http';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

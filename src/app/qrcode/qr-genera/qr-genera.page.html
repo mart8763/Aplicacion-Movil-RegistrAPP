@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Generar QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding center-content">
+  <ion-button expand="block" fill="outline" (click)="generateQR()">Generar QR</ion-button>
+
+  <div class="qr-container" *ngIf="qrData">
+    <h3 class="qr-message">Escanea este QR:</h3>
+    <qrcode [qrdata]="qrData" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+  </div>
+</ion-content>

@@ -41,19 +41,15 @@ const routes: Routes = [
     path: 'perfil-profesor',
     loadChildren: () => import('./profesor/perfil-profesor/perfil-profesor.module').then(m => m.PerfilProfesorPageModule)
   },
+  {
+    path: 'qr-genera',
+    loadChildren: () => import('./qrcode/qr-genera/qr-genera.module').then(m => m.QrGeneraPageModule)
+  },
   //Pagina configurada con ** queda indicada como pagina de redireccionamiento en casos de error 
   {
     path: '**',
     loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
   },
-
-
-
-
-
-
-
-
 
 ];
 

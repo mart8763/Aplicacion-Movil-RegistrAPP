@@ -1,0 +1,30 @@
+.center-content {
+    display: flex;
+    /* Activa Flexbox */
+    flex-direction: column;
+    /* Organiza los elementos en columna */
+    justify-content: flex-start;
+    /* Comienza desde arriba */
+    align-items: center;
+    /* Centra horizontalmente */
+    height: 100%;
+    /* Asegura que ocupe toda la pantalla */
+    padding: 0;
+    /* Elimina el padding por defecto */
+    text-align: center;
+    /* Centra el texto */
+}
+
+.qr-container {
+    margin-top: 150px;
+    /* Aumenta la distancia desde el botón hacia abajo */
+}
+
+.qr-message {
+    color: #ffc107;
+    /* Cambia el color del texto */
+    font-size: 24px;
+    /* Aumenta el tamaño de la letra */
+    margin-bottom: 20px;
+    /* Espacio entre el texto y el QR */
+}
