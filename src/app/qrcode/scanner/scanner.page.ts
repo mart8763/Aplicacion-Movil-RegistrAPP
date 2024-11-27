@@ -18,7 +18,6 @@ export class ScannerPage implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.loadAttendances(); // Cargar las asistencias al iniciar
   }
 
   // Iniciar el escáner
@@ -68,53 +67,30 @@ export class ScannerPage implements OnInit {
 
   // Registrar asistencia en la API
   registerAttendance() {
-    const apiUrl = 'http://localhost:3000/attendances'; // Ruta correcta para registrar asistencias
+    const apiUrl = 'http://localhost:3000/attendances'; // Ruta para registrar asistencias
 
-    // Obtén los datos del usuario que escaneó el QR
+    // Obtener los datos del usuario logueado desde localStorage
     const student = JSON.parse(localStorage.getItem('loggedInStudent') || '{}');
 
-    // Verificar si el usuario ya registró asistencia en el backend
-    const payload = { username: student.username };
+    // Crear el payload para registrar asistencia
+    const payload = {
+      id: student.username, // Usamos el username como identificador temporal
+      username: student.username
+    };
 
-    this.http.get<any[]>(apiUrl).subscribe({
-      next: (attendances) => {
-        const alreadyExists = attendances.some((attendance) => attendance.username === student.username);
-
-        if (alreadyExists) {
-          alert('Este usuario ya registró asistencia.');
-          return;
-        }
-
-        // Si no existe, registrar asistencia
-        this.http.post(apiUrl, payload).subscribe({
-          next: (response) => {
-            console.log('Asistencia registrada:', response);
-            this.attendances.push(payload); // Actualiza la lista local
-            alert('¡Asistencia registrada correctamente!');
-          },
-          error: (error) => {
-            console.error('Error al registrar asistencia:', error);
-            alert('Hubo un problema al registrar la asistencia.');
-          },
-        });
-      },
-      error: (error) => {
-        console.error('Error al verificar asistencias:', error);
-      },
-    });
-  }
-
-  loadAttendances() {
-    const apiUrl = 'http://localhost:3000/attendances'; // Ruta correcta para obtener asistencias
-
-    this.http.get<any[]>(apiUrl).subscribe({
+    // Registrar la asistencia directamente sin verificar duplicados
+    this.http.post(apiUrl, payload).subscribe({
       next: (response) => {
-        this.attendances = response; // Actualiza la lista con las asistencias
-        console.log('Asistencias cargadas:', this.attendances);
+        console.log('Asistencia registrada:', response);
+
+        // Actualizar la lista local de asistencias para mostrarla en la tabla
+        this.attendances.push(payload);
+
+        alert('¡Asistencia registrada correctamente!');
       },
       error: (error) => {
-        console.error('Error al cargar asistencias:', error);
-        this.attendances = []; // Asegúrate de que esté vacía si hay un error
+        console.error('Error al registrar asistencia:', error);
+        alert('Hubo un problema al registrar la asistencia.');
       },
     });
   }

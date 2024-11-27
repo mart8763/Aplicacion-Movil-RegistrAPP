@@ -21,18 +21,9 @@
     <video #video autoplay></video>
   </div>
 
-  <!-- Lista de asistencias -->
-  <div *ngIf="attendances.length > 0" class="attendance-table">
-    <h3>Usuarios que escanearon el QR:</h3>
-    <ion-list>
-      <ion-item *ngFor="let attendance of attendances">
-        <ion-label>{{ attendance.username }}</ion-label>
-      </ion-item>
-    </ion-list>
-  </div>
 
-  <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px; ;">
-    <ion-fab-button [routerLink]="['/perfil']">
+  <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px;">
+    <ion-fab-button [routerLink]="['/home']">
       <ion-icon name="chevron-back"></ion-icon>
     </ion-fab-button>
   </ion-fab>
