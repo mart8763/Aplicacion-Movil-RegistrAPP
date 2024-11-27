@@ -1,0 +1,35 @@
+.video-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+ion-button {
+    margin: 10px 0;
+}
+
+.attendance-table {
+    margin-top: 20px;
+}
+
+.attendance-table h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+ion-item {
+    border-bottom: 1px solid #ccc;
+}

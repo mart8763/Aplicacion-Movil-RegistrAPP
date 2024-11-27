@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escanear QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Botón para iniciar el escáner -->
+  <ion-button expand="block" (click)="startScanner()" *ngIf="!scanning" fill="outline">Iniciar Escáner</ion-button>
+  <!-- Botón para detener el escáner -->
+  <ion-button expand="block" color="danger" (click)="stopScanner()" *ngIf="scanning">Detener Escáner</ion-button>
+
+  <!-- Resultado del QR -->
+  <div *ngIf="qrResult">
+    <h3>Resultado del Escaneo:</h3>
+    <p>{{ qrResult }}</p>
+  </div>
+
+  <!-- Video de la cámara -->
+  <div *ngIf="scanning" class="video-container">
+    <video #video autoplay></video>
+  </div>
+
+  <!-- Lista de asistencias -->
+  <div *ngIf="attendances.length > 0" class="attendance-table">
+    <h3>Usuarios que escanearon el QR:</h3>
+    <ion-list>
+      <ion-item *ngFor="let attendance of attendances">
+        <ion-label>{{ attendance.username }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px; ;">
+    <ion-fab-button [routerLink]="['/perfil']">
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

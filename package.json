@@ -30,6 +30,7 @@
     "@capacitor/status-bar": "6.0.1",
     "@ionic/angular": "^8.0.0",
     "@ionic/storage-angular": "^4.0.0",
+    "@zxing/browser": "^0.1.5",
     "angularx-qrcode": "^18.0.2",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",

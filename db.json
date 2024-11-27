@@ -1,46 +1,44 @@
 {
   "users": [
     {
-      "id": "105",
-      "username": "z.test",
-      "email": "email@gmail.com",
-      "password": "password1234"
-    },
-    {
-      "id": "111",
-      "username": "i.prueba",
-      "email": "prueba@outlook.com",
-      "password": "contraseña"
-    },
-    {
-      "id": "d4b1",
-      "username": "amaru",
-      "email": "amarugei",
-      "password": "amaruweko"
-    },
-    {
       "id": "d4e8",
       "username": "pipe",
       "email": "aa",
-      "password": "a123"
+      "password": "a123",
+      "qrData": null
     },
     {
       "id": "55dd",
       "username": "aaa",
       "email": "aaa",
-      "password": "aaa"
+      "password": "aaa",
+      "qrData": null
     },
     {
       "id": "2bdd",
       "username": "pepito",
       "email": "pe",
-      "password": "amarugei"
+      "password": "amarugei",
+      "qrData": null
     },
     {
       "id": "c684",
       "username": "1111",
       "email": "1111",
-      "password": "1111"
+      "password": "1111",
+      "qrData": null
+    },
+    {
+      "id": "7c0e",
+      "username": "ww",
+      "email": "ww",
+      "password": "ww",
+      "qrData": null
+    }
+  ],
+  "attendances": [
+    {
+      "id": "cfe6"
     }
   ],
   "profesor": [
@@ -55,6 +53,12 @@
       "username": "juan",
       "email": "dhfg",
       "password": "pass123"
+    },
+    {
+      "id": "202",
+      "username": "ee",
+      "email": "dhfg",
+      "password": "ee"
     }
   ]
 }

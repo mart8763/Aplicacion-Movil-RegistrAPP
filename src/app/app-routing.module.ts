@@ -45,12 +45,16 @@ const routes: Routes = [
     path: 'qr-genera',
     loadChildren: () => import('./qrcode/qr-genera/qr-genera.module').then(m => m.QrGeneraPageModule)
   },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./qrcode/scanner/scanner.module').then(m => m.ScannerPageModule)
+  },
+
   //Pagina configurada con ** queda indicada como pagina de redireccionamiento en casos de error 
   {
     path: '**',
     loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
   },
-
 ];
 
 @NgModule({

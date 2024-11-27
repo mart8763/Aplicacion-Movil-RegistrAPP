@@ -11,4 +11,10 @@
     <h3 class="qr-message">Escanea este QR:</h3>
     <qrcode [qrdata]="qrData" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
   </div>
+
+  <ion-fab vertical="bottom" horizontal="start" style="margin: bottom 30px; ;">
+    <ion-fab-button [routerLink]="['/perfil-profesor']">
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
