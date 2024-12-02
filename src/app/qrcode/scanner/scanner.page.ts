@@ -14,6 +14,8 @@ export class ScannerPage implements OnInit {
   scanning: boolean = false; // Controla si el escáner está activo
   private controls: IScannerControls | null = null; // Controla el lector
   attendances: any[] = []; // Lista de asistencias
+  apiURL = "http://localhost:3000"
+
 
   constructor(private http: HttpClient) { }
 
@@ -67,7 +69,6 @@ export class ScannerPage implements OnInit {
 
   // Registrar asistencia en la API
   registerAttendance() {
-    const apiUrl = 'http://localhost:3000/attendances'; // Ruta para registrar asistencias
 
     // Obtener los datos del usuario logueado desde localStorage
     const student = JSON.parse(localStorage.getItem('loggedInStudent') || '{}');
@@ -79,7 +80,7 @@ export class ScannerPage implements OnInit {
     };
 
     // Registrar la asistencia directamente sin verificar duplicados
-    this.http.post(apiUrl, payload).subscribe({
+    this.http.post(this.apiURL, payload).subscribe({
       next: (response) => {
         console.log('Asistencia registrada:', response);
 

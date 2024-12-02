@@ -10,7 +10,7 @@ import { BrowserMultiFormatReader, IScannerControls } from '@zxing/browser';
 export class QrGeneraPage implements OnInit {
 
   qrData: string = ''; // Variable para los datos del QR
-
+  apiURL = "http://localhost:3000"
   attendances: any[] = []; // Lista de asistencias
 
   constructor(private http: HttpClient) { }
@@ -24,9 +24,8 @@ export class QrGeneraPage implements OnInit {
   }
 
   loadAttendances() {
-    const apiUrl = 'http://localhost:3000/attendances'; // Ruta para obtener asistencias
 
-    this.http.get<any[]>(apiUrl).subscribe({
+    this.http.get<any[]>(this.apiURL).subscribe({
       next: (response) => {
         this.attendances = response; // Asegúrate de que contiene los `id`
         console.log('Asistencias cargadas:', this.attendances);
